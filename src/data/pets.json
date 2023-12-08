@@ -1,0 +1,319 @@
+{
+  "pets": [
+    {
+      "id": 1,
+      "image": "https://wallpaperswide.com/download/golden_retriever_puppy-wallpaper-1600x900.jpg",
+      "name": "Buddy",
+      "type": "Dog",
+      "subtype": "Golden Retriever",
+      "price": 25000,
+      "description": "Friendly and playful, Buddy loves to fetch and go for long walks."
+    },
+    {
+      "id": 2,
+      "image": "https://wallpaper29.files.wordpress.com/2016/09/siamese-cat-wallpaper-1600x900.jpg",
+      "name": "Whiskers",
+      "type": "Cat",
+      "subtype": "Siamese",
+      "price": 15000,
+      "description": "Whiskers is a vocal and affectionate cat with striking blue eyes."
+    },
+    {
+      "id": 3,
+      "image": "https://i.pinimg.com/originals/fa/22/b3/fa22b3dbf8faa1520a8768f3a59bb328.jpg",
+      "name": "Max",
+      "type": "Dog",
+      "subtype": "German Shepherd",
+      "price": 30000,
+      "description": "Max is a loyal and intelligent dog, great for protection and companionship."
+    },
+    {
+      "id": 4,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX6YhxU7d5aa0oSCfgJ2P-GaoD2l7Qa-rVz-eKsV8pkTdLnmER5kCsYlAxzsP5AloPJWs&usqp=CAU",
+      "name": "Mittens",
+      "type": "Cat",
+      "subtype": "Ragdoll",
+      "price": 18000,
+      "description": "Mittens is a relaxed and gentle cat with soft, semi-longhair fur."
+    },
+    {
+      "id": 5,
+      "image": "https://img.goodfon.com/original/1600x900/e/94/zhivotnoe-sobaka-shchenok-detionysh-labrador-retriver-tsvety.jpg",
+      "name": "Coco",
+      "type": "Dog",
+      "subtype": "Labrador Retriever",
+      "price": 28000,
+      "description": "Coco is an energetic and friendly dog, perfect for families."
+    },
+    {
+      "id": 6,
+      "image": "https://www.hdwallpapers.in/download/white_black_dalmatian_dog_is_looking_straight_sitting_near_green_plant_hd_dog-1600x900.jpg",
+      "name": "Oreo",
+      "type": "Dog",
+      "subtype": "Dalmatian",
+      "price": 22000,
+      "description": "Oreo is a playful Dalmatian with distinctive black spots."
+    },
+    {
+      "id": 7,
+      "image": "https://www.hdwallpapers.in/download/white_fluffy_persian_cat_hd_kitten-1600x900.jpg",
+      "name": "Smokey",
+      "type": "Cat",
+      "subtype": "Persian",
+      "price": 20000,
+      "description": "Smokey is a Persian cat with luxurious long fur and a calm demeanor."
+    },
+    {
+      "id": 8,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqjgxNzWZU8RWhXES-zkyS1CgAnhlYn72B3lhadhD8wWv0aSjlfcJTkm-0aW0dSkXQqZE&usqp=CAU",
+      "name": "Rocky",
+      "type": "Dog",
+      "subtype": "Boxer",
+      "price": 26000,
+      "description": "Rocky is a strong and energetic Boxer, great for outdoor activities."
+    },
+    {
+      "id": 9,
+      "image": "https://th.bing.com/th/id/OIP.A_pT6NpLRk_lftO80zht1wHaEK?rs=1&pid=ImgDetMain",
+      "name": "Luna",
+      "type": "Cat",
+      "subtype": "Maine Coon",
+      "price": 22000,
+      "description": "Luna is a large and friendly Maine Coon cat with a fluffy tail."
+    },
+    {
+      "id": 10,
+      "image": "https://www.hdwallpapers.in/download/white_poodle_puppy_is_lying_down_on_floor_in_blur_background_hd_animals-HD.jpg",
+      "name": "Charlie",
+      "type": "Dog",
+      "subtype": "Poodle",
+      "price": 18000,
+      "description": "Charlie is an intelligent and hypoallergenic Poodle, suitable for families with allergies."
+    },
+    {
+      "id": 11,
+      "image": "https://4.bp.blogspot.com/-vqiRIPMBI-0/T_QcFxOSmXI/AAAAAAAADxQ/_VYCYeGzG0M/s1600/sphynx_cat-wallpaper+5.jpg",
+      "name": "Misty",
+      "type": "Cat",
+      "subtype": "Sphynx",
+      "price": 25000,
+      "description": "Misty is a unique Sphynx cat with hairless fur and a warm personality."
+    },
+    {
+      "id": 12,
+      "image": "https://www.hdwallpapers.in/download/king_charles_spaniel_dog_puppy_is_lying_down_on_swing_hd_dog-1600x900.jpg",
+      "name": "Teddy",
+      "type": "Dog",
+      "subtype": "Cavalier King Charles Spaniel",
+      "price": 32000,
+      "description": "Teddy is a gentle and affectionate Spaniel, perfect for indoor companionship."
+    },
+    {
+      "id": 13,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfjZ_vGoc7jvSo9ezbEbwPjXpbhoXmvgi9FaMrxBK9xL-utQU9XfOP2lbEV4xHbgFXuUg&usqp=CAU",
+      "name": "Milo",
+      "type": "Cat",
+      "subtype": "Bengal",
+      "price": 30000,
+      "description": "Milo is a playful Bengal cat with distinctive spotted or marbled coat patterns."
+    },
+    {
+      "id": 14,
+      "image": "https://i.pinimg.com/originals/02/ba/bc/02babc32b07953f53fa088ad7f40ee67.jpg",
+      "name": "Ruby",
+      "type": "Dog",
+      "subtype": "Beagle",
+      "price": 20000,
+      "description": "Ruby is a curious and friendly Beagle, great with kids."
+    },
+    {
+      "id": 15,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZQyZOqX0A2U0AwEUDPWVCI7mt4Tepk5QPj2KptSPhLEDzsIzTproUzk_swSzCLtF3QZU&usqp=CAU",
+      "name": "Shadow",
+      "type": "Cat",
+      "subtype": "Scottish Fold",
+      "price": 28000,
+      "description": "Shadow is a Scottish Fold cat known for its folded ears and sweet temperament."
+    },
+    {
+      "id": 16,
+      "image": "https://www.pupvine.com/wp-content/uploads/2021/02/Shiba-Inu-stands-in-the-tiled-kitchen-staring-ahead.jpg",
+      "name": "Leo",
+      "type": "Dog",
+      "subtype": "Shiba Inu",
+      "price": 23000,
+      "description": "Leo is a spirited and loyal Shiba Inu with a charming personality."
+    },
+    {
+      "id": 17,
+      "image": "https://wallpapers.com/images/hd/cute-cat-pictures-wc6rn13yw8kitqwd.jpg",
+      "name": "Sasha",
+      "type": "Cat",
+      "subtype": "Ragamuffin",
+      "price": 22000,
+      "description": "Sasha is a Ragamuffin cat known for its friendly nature and plush coat."
+    },
+    {
+      "id": 18,
+      "image": "https://images.wallpaperscraft.com/image/single/rottweiler_dog_autumn_121005_1600x900.jpg",
+      "name": "Duke",
+      "type": "Dog",
+      "subtype": "Rottweiler",
+      "price": 27000,
+      "description": "Duke is a strong and protective Rottweiler, ideal for security purposes."
+    },
+    {
+      "id": 19,
+      "image": "https://wallpaperfx.com/view_image/abyssinian-cat-1600x900-wallpaper-17708.jpg",
+      "name": "Cinnamon",
+      "type": "Cat",
+      "subtype": "Abyssinian",
+      "price": 19000,
+      "description": "Cinnamon is an Abyssinian cat known for its playful and active nature."
+    },
+    {
+      "id": 20,
+      "image": "https://th.bing.com/th/id/R.dc0d4780dde5b0333625273f9217742a?rik=wK2RKE8pY4qLjQ&riu=http%3a%2f%2fimages6.fanpop.com%2fimage%2fphotos%2f38600000%2fWelsh-Corgi-dogs-38689841-1600-900.jpg&ehk=LU9p2oLXw%2bjr5m0oulhA1qn54F9qH16GEtkQIdKkkBM%3d&risl=&pid=ImgRaw&r=0",
+      "name": "Oliver",
+      "type": "Dog",
+      "subtype": "Corgi",
+      "price": 21000,
+      "description": "Oliver is an adorable and affectionate Corgi with a charming smile."
+    },
+    {
+      "id": 21,
+      "image": "https://th.bing.com/th/id/OIP.Ze1bqveabsAs38IsZKaXlAHaEK?rs=1&pid=ImgDetMain",
+      "name": "Nala",
+      "type": "Cat",
+      "subtype": "Persian",
+      "price": 24000,
+      "description": "Nala is a Persian cat with a regal appearance and a calm demeanor."
+    },
+    {
+      "id": 22,
+      "image": "https://th.bing.com/th/id/OIP.GQ7668T1WNWQP0TNdVb_0gHaEK?rs=1&pid=ImgDetMain",
+      "name": "Winston",
+      "type": "Dog",
+      "subtype": "French Bulldog",
+      "price": 28000,
+      "description": "Winston is a compact and friendly French Bulldog, great for apartment living."
+    },
+    {
+      "id": 23,
+      "image": "https://th.bing.com/th/id/OIP.u09HphLb8J8R3iSvxn1GKQHaED?rs=1&pid=ImgDetMain",
+      "name": "Chloe",
+      "type": "Cat",
+      "subtype": "Exotic Shorthair",
+      "price": 22000,
+      "description": "Chloe is an Exotic Shorthair cat with a plush coat and a sweet disposition."
+    },
+    {
+      "id": 24,
+      "image": "https://www.cyberpet.com/wp-content/uploads/2019/09/CyberPet-Great-dane-1600x900.jpg",
+      "name": "Zeus",
+      "type": "Dog",
+      "subtype": "Great Dane",
+      "price": 35000,
+      "description": "Zeus is a majestic and gentle giant, known for its impressive stature."
+    },
+    {
+      "id": 25,
+      "image": "https://wallpapers.com/images/hd/russian-blue-cat-pictures-c3gwsa8wfjwigzk7.jpg",
+      "name": "Lily",
+      "type": "Cat",
+      "subtype": "Russian Blue",
+      "price": 26000,
+      "description": "Lily is a Russian Blue cat with striking silver-blue fur and a reserved personality."
+    },
+    {
+      "id": 26,
+      "image": "https://hdqwalls.com/download/siberian-husky-dog-breed-4c-1600x900.jpg",
+      "name": "Riley",
+      "type": "Dog",
+      "subtype": "Siberian Husky",
+      "price": 30000,
+      "description": "Riley is an energetic and sociable Siberian Husky with striking blue eyes."
+    },
+    {
+      "id": 27,
+      "image": "https://www.cyberpet.com/wp-content/uploads/2019/10/Siberian-cat-2-1600x900.jpg",
+      "name": "Mocha",
+      "type": "Cat",
+      "subtype": "Siberian",
+      "price": 28000,
+      "description": "Mocha is a Siberian cat known for its hypoallergenic coat and playful demeanor."
+    },
+    {
+      "id": 28,
+      "image": "https://www.petpaw.com.au/wp-content/uploads/2014/06/Irish-Setter-4.jpg",
+      "name": "Rusty",
+      "type": "Dog",
+      "subtype": "Irish Setter",
+      "price": 32000,
+      "description": "Rusty is an Irish Setter with a beautiful red coat and a friendly disposition."
+    },
+    {
+      "id": 29,
+      "image": "https://images3.alphacoders.com/738/thumb-1920-738230.jpg",
+      "name": "Mia",
+      "type": "Cat",
+      "subtype": "Himalayan",
+      "price": 25000,
+      "description": "Mia is a Himalayan cat with striking color points and a calm personality."
+    },
+    {
+      "id": 30,
+      "image": "https://wallpapersmug.com/download/1600x900/7755c3/Border_Collie_muzzle_bokeh_outdoor.jpg",
+      "name": "Cooper",
+      "type": "Dog",
+      "subtype": "Border Collie",
+      "price": 27000,
+      "description": "Cooper is a highly intelligent and agile Border Collie, perfect for active families."
+    },
+    {
+      "id": 31,
+      "image": "https://i.pinimg.com/originals/ce/49/ef/ce49ef86d2125299308c266c9c7074f8.jpg",
+      "name": "Thumper",
+      "type": "Rabbit",
+      "subtype": "Holland Lop",
+      "price": 12000,
+      "description": "Thumper is a cute and friendly Holland Lop rabbit with floppy ears."
+    },
+    {
+      "id": 32,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQscLg0gwa6IaeiPeF3qV56qcFwKqq2xfF6VQ&usqp=CAU",
+      "name": "Kiwi",
+      "type": "Bird",
+      "subtype": "Budgerigar",
+      "price": 5000,
+      "description": "Kiwi is a colorful and chatty Budgerigar bird, perfect for companionship."
+    },
+    {
+      "id": 33,
+      "image": "https://www.worlds-finest-wool.com/wp-content/uploads/2021/05/Angora-Rabbit-bw.jpg",
+      "name": "Snowball",
+      "type": "Rabbit",
+      "subtype": "Angora",
+      "price": 15000,
+      "description": "Snowball is an Angora rabbit with soft, long fur and a calm temperament."
+    },
+    {
+      "id": 34,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFmeHTqoli2UwR_72gxX4TV9itNJUiqSeyCFQ459f8LDnB3gl1WHT5zUxzNHwmPbay4vY&usqp=CAU",
+      "name": "Tweety",
+      "type": "Bird",
+      "subtype": "Canary",
+      "price": 8000,
+      "description": "Tweety is a cheerful and melodious Canary bird, brightening up any room."
+    },
+    {
+      "id": 35,
+      "image": "https://wallpapercave.com/wp/wp9030900.jpg",
+      "name": "Cotton",
+      "type": "Rabbit",
+      "subtype": "Mini Lop",
+      "price": 10000,
+      "description": "Cotton is a Mini Lop rabbit known for its friendly and curious nature."
+    }
+  ]
+}
