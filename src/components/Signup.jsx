@@ -4,10 +4,9 @@ import { auth, googleProvider } from "../config/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithPopup,
-  signOut,
 } from "firebase/auth";
 import { FaGoogle } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser } from "../features/auth";
 import { db } from "../config/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -19,14 +18,13 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userId = useSelector((state) => state.auth.user);
 
   async function signIn(e) {
     e.preventDefault();
     try {
       const data = await createUserWithEmailAndPassword(auth, email, password);
       dispatch(setUser(data.user.uid));
-      console.log("signed in using mail");
+      // console.log("signed in using mail");
       const docRef = doc(db, "favorites", auth.currentUser.uid.toString());
       await setDoc(docRef, {});
     } catch (error) {
@@ -40,32 +38,21 @@ const Signup = () => {
     try {
       const data=await signInWithPopup(auth, googleProvider);
       dispatch(setUser(data.user.uid));
-      console.log("signed in");
+      // console.log("signed in");
 
       const docRef = doc(db, "favorites", data.user.uid.toString());
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        console.log("doc found");
+        // console.log("doc found");
         if (docSnap.data().favorites) dispatch(set(docSnap.data().favorites));
       } else {
-        console.log("no doc found");
+        // console.log("no doc found");
         await setDoc(docRef, {});
       }
     } catch (error) {
       console.log(error);
     } finally {
       navigate("/");
-    }
-  }
-  async function handleSignOut(e) {
-    e.preventDefault();
-    try {
-      await signOut(auth);
-      console.log("signed out");
-      dispatch(setUser(null));
-      dispatch(set([]));
-    } catch (error) {
-      console.log(error);
     }
   }
 
@@ -109,12 +96,6 @@ const Signup = () => {
           <FaGoogle />
           Sign In With Google
         </button>
-        {/* <button
-          className="mb-5 bg-amber-500 p-2 rounded-xl"
-          onClick={(e) => handleSignOut(e)}
-        >
-          Sign Out
-        </button> */}
       </form>
     </div>
   );

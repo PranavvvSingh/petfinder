@@ -66,7 +66,7 @@ const Collection = () => {
   return (
     <>
       <Search />
-      <div className="flex flex-wrap justify-center gap-8 mb-5">
+      <div className="flex flex-row flex-wrap items-center justify-center gap-5 md:gap-8 mb-5">
         <div className="flex flex-wrap items-center">
           <label className="mr-1">Type:</label>
           <div className="border p-1 rounded-lg focus-within:ring ring-yellow-400">

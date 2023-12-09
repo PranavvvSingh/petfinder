@@ -13,7 +13,7 @@ const Search = () => {
   return (
     <div className="flex justify-center p-10">
       <form
-        className="flex border-4 focus-within:ring-2 ring-inset ring-yellow-500 justify-between w-[400px] px-4 py-2 gap-2 rounded-full"
+        className="flex border-4 focus-within:ring-2 ring-inset ring-yellow-500 justify-between w-[300px] md:w-[400px] px-4 py-2 gap-2 rounded-full"
         onSubmit={event=>event.preventDefault()}
       >
         <input

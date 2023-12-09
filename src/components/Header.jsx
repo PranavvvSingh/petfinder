@@ -25,12 +25,12 @@ const Header = () => {
   }
 
   return (
-    <div className="sticky top-0 z-10 flex flex-row justify-between px-8 py-3 bg-yellow-500">
-      <NavLink to="/" className="text-xl md:text-2xl flex gap-2 items-center">
+    <div className="sticky top-0 z-10 flex flex-row justify-between px-2 md:px-8 py-4 bg-yellow-500">
+      <NavLink to="/" className="text-xl md:text-2xl flex gap-1 items-center">
         <Logo />
         PetFinder
       </NavLink>
-      <div className="flex gap-3 items-center">
+      <div className="flex gap-1 md:gap-3 items-center">
         <NavLink
           to="/"
           className={({ isActive }) =>
