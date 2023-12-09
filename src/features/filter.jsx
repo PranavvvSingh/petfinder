@@ -1,23 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
-export const savedSlice = createSlice({
+export const filterSlice = createSlice({
   name: "filter",
   initialState: {
-    selectedType:"All",
-    selectedPrice:"All",
-    selectedSort:"Recommended",
+    searchText: "",
+    selectedType: "All",
+    selectedPrice: "All",
+    selectedSort: "Recommended",
   },
   reducers: {
-    setFilter: (state,action)=>{
-        return (state = {
-          selectedType: action.payload.selectedType,
-          selectedPrice: action.payload.selectedPrice,
-          selectedSort: action.payload.selectedSort,
-        });
+    setSearchText: (state, action) => {
+      state.searchText = action.payload;
+    },
+    setSelectedType: (state, action) => {
+      state.selectedType = action.payload;
+    },
+    setSelectedPrice: (state, action) => {
+      state.selectedPrice = action.payload;
+    },
+    setSelectedSort: (state, action) => {
+      state.selectedSort = action.payload;
     },
   },
 });
 
-export default savedSlice.reducer;
-export const { setFilter } = savedSlice.actions;
+export default filterSlice.reducer;
+export const { setSearchText, setSelectedType, setSelectedPrice, setSelectedSort } =
+  filterSlice.actions;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MdOutlinePets as Logo } from "react-icons/md";
 import { auth, googleProvider } from "../config/firebase";
 import {
-  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
@@ -12,25 +12,23 @@ import { setUser } from "../features/auth";
 import { db } from "../config/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { set } from "../features/favorites";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-
-const Login = () => {
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userId = useSelector(state=>state.auth.user)
+  const userId = useSelector((state) => state.auth.user);
 
-  async function logIn(e) {
+  async function signIn(e) {
     e.preventDefault();
     try {
-      const data = await signInWithEmailAndPassword(auth, email, password);
+      const data = await createUserWithEmailAndPassword(auth, email, password);
       dispatch(setUser(data.user.uid));
-      console.log("logged in using mail");
+      console.log("signed in using mail");
       const docRef = doc(db, "favorites", auth.currentUser.uid.toString());
-      const docSnap = await getDoc(docRef);
-      if (docSnap.data().favorites) dispatch(set(docSnap.data().favorites));
+      await setDoc(docRef, {});
     } catch (error) {
       console.log(error);
     } finally {
@@ -40,26 +38,22 @@ const Login = () => {
   async function signInWithGoogle(e) {
     e.preventDefault();
     try {
-      await signInWithPopup(auth, googleProvider);
-      dispatch(setUser(auth.currentUser.uid));
-      // dispatch(setUser(data.user.uid));
-      console.log("signed in using google");
+      const data=await signInWithPopup(auth, googleProvider);
+      dispatch(setUser(data.user.uid));
+      console.log("signed in");
 
-      const docRef = doc(db, "favorites", auth.currentUser.uid.toString());
+      const docRef = doc(db, "favorites", data.user.uid.toString());
       const docSnap = await getDoc(docRef);
-      if (docSnap.exists()){
-        console.log("doc found")
-        if (docSnap.data().favorites) 
-        dispatch(set(docSnap.data().favorites));
-      }
-      else{
+      if (docSnap.exists()) {
+        console.log("doc found");
+        if (docSnap.data().favorites) dispatch(set(docSnap.data().favorites));
+      } else {
         console.log("no doc found");
-        await setDoc(docRef,{})
+        await setDoc(docRef, {});
       }
-
     } catch (error) {
       console.log(error);
-    } finally{
+    } finally {
       navigate("/");
     }
   }
@@ -85,7 +79,6 @@ const Login = () => {
           <Logo className="" />
           PetFinder
         </h1>
-        <NavLink to="/signup" className="text-neutral-500 text-center mb-5">Not a member? Click here</NavLink>
         <input
           type="text"
           size={1}
@@ -104,9 +97,9 @@ const Login = () => {
         />
         <button
           className="mb-5 bg-amber-500 p-2 rounded-xl"
-          onClick={(e) => logIn(e)}
+          onClick={(e) => signIn(e)}
         >
-          Log In
+          Sign Up
         </button>
         <hr className="bg-neutral-200 h-[2px]   mb-5" />
         <button
@@ -127,4 +120,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
