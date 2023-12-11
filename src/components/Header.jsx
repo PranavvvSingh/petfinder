@@ -4,8 +4,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { auth } from "../config/firebase";
 import { signOut } from "firebase/auth";
-import { setUser } from "../features/auth";
+import { logout } from "../features/auth";
 import { set } from "../features/favorites";
+import { setPending } from "../features/auth";
 
 const Header = () => {
   const userId = useSelector((state) => state.auth.user);
@@ -13,13 +14,15 @@ const Header = () => {
   const navigate = useNavigate();
   async function handleSignOut() {
     try {
+      dispatch(setPending(true));
       await signOut(auth);
       console.log("signed out");
-      dispatch(setUser(null));
+      dispatch(logout());
       dispatch(set([]));
     } catch (error) {
       console.log(error);
     } finally{
+      dispatch(setPending(false));
       navigate("/")
     }
   }

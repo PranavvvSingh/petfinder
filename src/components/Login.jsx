@@ -1,30 +1,28 @@
 import React, { useState } from "react";
 import { MdOutlinePets as Logo } from "react-icons/md";
 import { auth, googleProvider } from "../config/firebase";
-import {
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { FaGoogle } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { setUser } from "../features/auth";
+import { useDispatch, useSelector } from "react-redux";
 import { db } from "../config/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { set } from "../features/favorites";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import { setPending } from "../features/auth";
+import Loader from "../components/Loader"
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isPending = useSelector(state=>state.auth.isPending)
 
   async function logIn(e) {
     e.preventDefault();
     try {
-      const data = await signInWithEmailAndPassword(auth, email, password);
-      dispatch(setUser(data.user.uid));
+      dispatch(setPending(true));
+      await signInWithEmailAndPassword(auth, email, password);
       console.log("logged in using mail");
       const docRef = doc(db, "favorites", auth.currentUser.uid.toString());
       const docSnap = await getDoc(docRef);
@@ -32,36 +30,33 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     } finally {
+      dispatch(setPending(false));
       navigate("/");
     }
   }
   async function signInWithGoogle(e) {
     e.preventDefault();
     try {
+      dispatch(setPending(true));
       await signInWithPopup(auth, googleProvider);
-      dispatch(setUser(auth.currentUser.uid));
-      // dispatch(setUser(data.user.uid));
-      // console.log("signed in using google");
+      console.log("signed in using google");
 
       const docRef = doc(db, "favorites", auth.currentUser.uid.toString());
       const docSnap = await getDoc(docRef);
-      if (docSnap.exists()){
-        // console.log("doc found")
-        if (docSnap.data().favorites) 
-        dispatch(set(docSnap.data().favorites));
+      if (docSnap.exists()) {
+        if (docSnap.data().favorites) dispatch(set(docSnap.data().favorites));
+      } else {
+        await setDoc(docRef, {});
       }
-      else{
-        // console.log("no doc found");
-        await setDoc(docRef,{})
-      }
-
     } catch (error) {
       console.log(error);
-    } finally{
+    } finally {
+      dispatch(setPending(false));
       navigate("/");
     }
   }
-
+  if(isPending) return <Loader/>
+  else
   return (
     <div className="flex justify-center items-center mt-[50px]">
       <form
@@ -72,7 +67,9 @@ const Login = () => {
           <Logo className="" />
           PetFinder
         </h1>
-        <NavLink to="/signup" className="text-neutral-500 text-center mb-5">Not a member? Click here</NavLink>
+        <NavLink to="/signup" className="text-neutral-500 text-center mb-5">
+          Not a member? Click here
+        </NavLink>
         <input
           type="text"
           size={1}
