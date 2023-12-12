@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "../data/pets.json";
 import Card from "./Card";
 import Search from "./Search";
@@ -9,11 +9,10 @@ import {
   setSelectedSort,
 } from "../features/filter";
 import { setSearchText } from "../features/filter";
-
+import { fetchCollection } from "../config/firebase";
 
 const Collection = () => {
   // eslint-disable-next-line no-unused-vars
-  const [pets, setPets] = useState(data.pets);
 
   const { searchText, selectedType, selectedPrice, selectedSort } = useSelector(
     (state) => state.filter
@@ -28,40 +27,44 @@ const Collection = () => {
     "Price: High to Low",
   ];
 
-  const filteredPets = pets.filter((pet) => {
-    if (selectedType !== "All" && pet.type !== selectedType) return false;
-    if (selectedPrice !== "All") {
-      const [minPrice, maxPrice] = selectedPrice.split("-");
-      if (pet.price < parseInt(minPrice) || pet.price > parseInt(maxPrice)) {
-        return false;
-      }
-    }
-    if (
-      searchText &&
-      !(
-        pet.type.toLowerCase().includes(searchText.toLowerCase()) ||
-        pet.subtype.toLowerCase().includes(searchText.toLowerCase()) ||
-        pet.description.toLowerCase().includes(searchText.toLowerCase())
-      )
-    ) {
-      return false;
-    }
-    return true;
-  });
+  // const filteredPets = pets.filter((pet) => {
+  //   if (selectedType !== "All" && pet.type !== selectedType) return false;
+  //   if (selectedPrice !== "All") {
+  //     const [minPrice, maxPrice] = selectedPrice.split("-");
+  //     if (pet.price < parseInt(minPrice) || pet.price > parseInt(maxPrice)) {
+  //       return false;
+  //     }
+  //   }
+  //   if (
+  //     searchText &&
+  //     !(
+  //       pet.type.toLowerCase().includes(searchText.toLowerCase()) ||
+  //       pet.subtype.toLowerCase().includes(searchText.toLowerCase()) ||
+  //       pet.description.toLowerCase().includes(searchText.toLowerCase())
+  //     )
+  //   ) {
+  //     return false;
+  //   }
+  //   return true;
+  // });
 
-  const sortedPets =
-    selectedSort === "Recommended"
-      ? [...filteredPets]
-      : [...filteredPets].sort((a, b) => {
-          if (selectedSort === "Price: Low to High") return a.price - b.price;
-          else return b.price - a.price;
-        });
+  // const sortedPets =
+  //   selectedSort === "Recommended"
+  //     ? [...filteredPets]
+  //     : [...filteredPets].sort((a, b) => {
+  //         if (selectedSort === "Price: Low to High") return a.price - b.price;
+  //         else return b.price - a.price;
+  //       });
   function handleClearFilters() {
     dispatch(setSelectedType("All"));
     dispatch(setSelectedPrice("All"));
     dispatch(setSelectedSort("Recommended"));
     dispatch(setSearchText(""));
   }
+  const [pets, setPets] = useState([]);
+  useEffect(() => {
+    fetchCollection().then((data) => setPets(data));
+  }, []);
 
   return (
     <>
@@ -123,17 +126,17 @@ const Collection = () => {
         </button>
       </div>
       <p className="text-center text-neutral-500">
-        Showing {sortedPets.length} Results
+        Showing {pets.length} Results
       </p>
       <div className="flex flex-wrap p-7 gap-8 justify-center">
-        {sortedPets.map((pet) => {
+        {pets.map((pet) => {
           return (
             <Card
               key={pet.id}
               id={pet.id}
-              name={pet.name}
-              price={pet.price}
-              image={pet.image}
+              name={pet.data.name}
+              price={pet.data.price}
+              image={pet.data.image}
             />
           );
         })}

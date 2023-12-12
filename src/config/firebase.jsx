@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { getFirestore } from "firebase/firestore"
+import { doc, getDoc, getFirestore } from "firebase/firestore"
+
+import { getDocs, collection } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA-AdWqZstl6-yMxD_dp9g9XaYlQyQOCgo",
@@ -16,3 +18,16 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider()
 export const db= getFirestore(app)
+
+export const fetchCollection= async() =>{
+  const querySnapshot = await getDocs(collection(db, "pets"));
+  const data= querySnapshot.docs.map((doc)=>{
+    return { id: doc.id, data: doc.data() };
+  })
+  return data;
+}
+export const fetchPet= async(petId)=>{
+  const docSnap=await getDoc(doc(db, "pets", petId));
+  if(docSnap.exists()){ console.log(docSnap.data()); return docSnap.data();}
+  return null;
+}

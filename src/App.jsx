@@ -32,22 +32,8 @@ function App() {
           <Route index element={<Collection />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
-          <Route
-            path="pet/:petId"
-            element={
-              <RequireAuth>
-                <Pet />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="saved"
-            element={
-              <RequireAuth>
-                <Saved />
-              </RequireAuth>
-            }
-          />
+          <Route path="pet/:petId" element={<RequireAuth><Pet /></RequireAuth>}/>
+          <Route path="saved" element={<RequireAuth><Saved /></RequireAuth>}/>
           <Route path="hello" element={<Hello />} />
         </Route>
       </Routes>

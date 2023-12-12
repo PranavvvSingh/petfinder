@@ -39,7 +39,7 @@ const Card = ({ image, name, price, id }) => {
         dispatch(remove(id));
       } else {
         addToStore();
-        dispatch(add({ image, name, price, id }));
+        dispatch(add({ id, name, price, image }));
       }
     }
   }
