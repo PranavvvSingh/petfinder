@@ -1,8 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { doc, getDoc, getFirestore } from "firebase/firestore"
-
-import { getDocs, collection } from "firebase/firestore";
+import { doc,  getDoc, getFirestore, updateDoc, arrayRemove, arrayUnion,getDocs, collection } from "firebase/firestore"
 
 const firebaseConfig = {
   apiKey: "AIzaSyA-AdWqZstl6-yMxD_dp9g9XaYlQyQOCgo",
@@ -19,6 +17,8 @@ export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider()
 export const db= getFirestore(app)
 
+// export functions 
+
 export const fetchCollection= async() =>{
   const querySnapshot = await getDocs(collection(db, "pets"));
   const data= querySnapshot.docs.map((doc)=>{
@@ -31,3 +31,25 @@ export const fetchPet= async(petId)=>{
   if(docSnap.exists()){ console.log(docSnap.data()); return docSnap.data();}
   return null;
 }
+export const addToStore = async (pet) => {
+  const docRef = doc(db, "favorites", auth.currentUser.uid.toString());
+  await updateDoc(docRef, {
+    favorites: arrayUnion({
+      id: pet?.id,
+      name: pet?.name,
+      price: pet?.price,
+      image: pet?.image,
+    }),
+  });
+};
+export const removeFromStore = async (pet) => {
+  const docRef = doc(db, "favorites", auth.currentUser.uid.toString());
+  await updateDoc(docRef, {
+    favorites: arrayRemove({
+      id: pet?.id,
+      name: pet?.name,
+      price: pet?.price,
+      image: pet?.image,
+    }),
+  });
+};

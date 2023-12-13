@@ -48,7 +48,7 @@ const Card = ({ image, name, price, id }) => {
       <img
         src={image}
         alt=""
-        className="w-[280px]"
+        className="w-[300px] aspect-[16/10] object-cover"
         onClick={() => {
           navigate("/pet/" + id);
         }}

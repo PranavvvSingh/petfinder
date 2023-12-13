@@ -10,6 +10,8 @@ import {
 } from "../features/filter";
 import { setSearchText } from "../features/filter";
 import { fetchCollection } from "../config/firebase";
+import { collection, getDoc, getDocs, orderBy, where, query } from "firebase/firestore";
+import { db } from "../config/firebase";
 
 const Collection = () => {
   // eslint-disable-next-line no-unused-vars
@@ -62,9 +64,38 @@ const Collection = () => {
     dispatch(setSearchText(""));
   }
   const [pets, setPets] = useState([]);
-  useEffect(() => {
-    fetchCollection().then((data) => setPets(data));
-  }, []);
+  // useEffect(() => {
+  //   fetchCollection().then((data) => setPets(data));
+  // }, []);
+  useEffect(()=>{
+    const fetchData= async()=>{
+    const collectionRef=collection(db,"pets")
+    const queryConstraints = [];
+    if(selectedType!="All") queryConstraints.push(where("type", "==", selectedType));
+    if(selectedSort!="All"){
+      if(selectedSort=="Price: Low to High") queryConstraints.push(orderBy("price"));
+      else queryConstraints.push(orderBy("price", "desc"));
+    }
+    if(selectedPrice!="All"){
+      if(selectedPrice=="30000+") queryConstraints.push(where("price", ">=", 30000));
+      else{
+        queryConstraints.push(
+          where("price", ">=", parseInt(selectedPrice.split("-")[0]))
+        );
+        queryConstraints.push(
+          where("price", "<=", parseInt(selectedPrice.split("-")[1]))
+        );
+      }    
+    }
+    const q=query(collectionRef,...queryConstraints)
+    const querySnapshot = await getDocs(q);
+    setPets([])
+    querySnapshot.forEach(doc=>{
+      setPets(curr=>[...curr,doc.data()])
+    })
+  }
+    fetchData();
+  },[selectedPrice,selectedSort,selectedType])
 
   return (
     <>
@@ -134,12 +165,13 @@ const Collection = () => {
             <Card
               key={pet.id}
               id={pet.id}
-              name={pet.data.name}
-              price={pet.data.price}
-              image={pet.data.image}
+              name={pet.name}
+              price={pet.price}
+              image={pet.image}
             />
           );
         })}
+        {/* <pre>{JSON.stringify(pets)}</pre> */}
       </div>
     </>
   );

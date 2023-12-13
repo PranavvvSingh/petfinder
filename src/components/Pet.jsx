@@ -3,9 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FaRupeeSign as RupeeSign } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../features/favorites";
-import { db, fetchPet } from "../config/firebase";
-import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { auth } from "../config/firebase";
+import { fetchPet } from "../config/firebase";
+import { auth, addToStore, removeFromStore } from "../config/firebase";
 
 const Pet = () => {
   const [pet, setPet] = useState();
@@ -16,29 +15,17 @@ const Pet = () => {
   useEffect(() => fetchPet(petId).then((data) => setPet(data)), []);
   const favorites = useSelector((state) => state.favorites.collection);
   const favoriteStatus = favorites.some((item) => item.id === numericPetId);
-  const addToStore = async () => {
-    const docRef = doc(db, "favorites", auth.currentUser.uid.toString());
-    await updateDoc(docRef, {
-      favorites: arrayUnion({ id:pet?.id, name: pet?.name, price:pet?.price, image:pet?.image }),
-    });
-  };
-  const removeFromStore = async () => {
-    const docRef = doc(db, "favorites", auth.currentUser.uid.toString());
-    await updateDoc(docRef, {
-      favorites: arrayRemove({ id:pet?.id, name: pet?.name, price:pet?.price, image:pet?.image }),
-    });
-  };
-  function ToggleFavorite() {
+  async function ToggleFavorite() {
     if (!numericPetId) {
       console.log("not logged in");
       console.log(auth.currentUser);
       navigate("/login");
     } else {
       if (favoriteStatus) {
-        removeFromStore();
+        await removeFromStore(pet);
         dispatch(remove(pet?.id));
       } else {
-        addToStore();
+        await addToStore(pet);
         dispatch(add(pet?.id));
       }
     }

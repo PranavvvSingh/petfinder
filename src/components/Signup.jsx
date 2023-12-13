@@ -18,7 +18,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const isPending = useSelector((state) => state.auth.isPending);
 
-  async function signIn(e) {
+  async function signInWithEmail(e) {
     e.preventDefault();
     try {
       dispatch(setPending(true));
@@ -37,7 +37,6 @@ const Signup = () => {
     try {
       dispatch(setPending(true));
       const data = await signInWithPopup(auth, googleProvider);
-
       const docRef = doc(db, "favorites", data.user.uid.toString());
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -82,14 +81,14 @@ const Signup = () => {
           />
           <button
             className="mb-5 bg-amber-500 p-2 rounded-xl"
-            onClick={(e) => signIn(e)}
+            onClick={(e) => {e.preventDefault(); signInWithEmail(e)}}
           >
             Sign Up
           </button>
           <hr className="bg-neutral-200 h-[2px]   mb-5" />
           <button
             className="bg-amber-500 p-2 rounded-xl flex items-center justify-center gap-2"
-            onClick={(e) => signInWithGoogle(e)}
+            onClick={(e) => {e.preventDefault(); signInWithGoogle(e)}}
           >
             <FaGoogle />
             Sign In With Google
