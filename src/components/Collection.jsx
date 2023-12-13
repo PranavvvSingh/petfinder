@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import data from "../data/pets.json";
 import Card from "./Card";
 import Search from "./Search";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +8,6 @@ import {
   setSelectedSort,
 } from "../features/filter";
 import { setSearchText } from "../features/filter";
-import { fetchCollection } from "../config/firebase";
 import { collection, getDoc, getDocs, orderBy, where, query } from "firebase/firestore";
 import { db } from "../config/firebase";
 
@@ -29,34 +27,6 @@ const Collection = () => {
     "Price: High to Low",
   ];
 
-  // const filteredPets = pets.filter((pet) => {
-  //   if (selectedType !== "All" && pet.type !== selectedType) return false;
-  //   if (selectedPrice !== "All") {
-  //     const [minPrice, maxPrice] = selectedPrice.split("-");
-  //     if (pet.price < parseInt(minPrice) || pet.price > parseInt(maxPrice)) {
-  //       return false;
-  //     }
-  //   }
-  //   if (
-  //     searchText &&
-  //     !(
-  //       pet.type.toLowerCase().includes(searchText.toLowerCase()) ||
-  //       pet.subtype.toLowerCase().includes(searchText.toLowerCase()) ||
-  //       pet.description.toLowerCase().includes(searchText.toLowerCase())
-  //     )
-  //   ) {
-  //     return false;
-  //   }
-  //   return true;
-  // });
-
-  // const sortedPets =
-  //   selectedSort === "Recommended"
-  //     ? [...filteredPets]
-  //     : [...filteredPets].sort((a, b) => {
-  //         if (selectedSort === "Price: Low to High") return a.price - b.price;
-  //         else return b.price - a.price;
-  //       });
   function handleClearFilters() {
     dispatch(setSelectedType("All"));
     dispatch(setSelectedPrice("All"));
@@ -64,13 +34,14 @@ const Collection = () => {
     dispatch(setSearchText(""));
   }
   const [pets, setPets] = useState([]);
-  // useEffect(() => {
-  //   fetchCollection().then((data) => setPets(data));
-  // }, []);
+
   useEffect(()=>{
     const fetchData= async()=>{
     const collectionRef=collection(db,"pets")
     const queryConstraints = [];
+    if(searchText!="") queryConstraints.push(
+      where("keywords", "array-contains-any", searchText.toLowerCase().split(" "))
+    );
     if(selectedType!="All") queryConstraints.push(where("type", "==", selectedType));
     if(selectedSort!="All"){
       if(selectedSort=="Price: Low to High") queryConstraints.push(orderBy("price"));
@@ -95,7 +66,7 @@ const Collection = () => {
     })
   }
     fetchData();
-  },[selectedPrice,selectedSort,selectedType])
+  },[selectedPrice,selectedSort,selectedType,searchText])
 
   return (
     <>

@@ -12,7 +12,11 @@ const Pet = () => {
   const { petId } = useParams();
   const navigate = useNavigate();
   const numericPetId = parseInt(petId, 10);
-  useEffect(() => fetchPet(petId).then((data) => setPet(data)), []);
+  useEffect(() =>{
+    (async()=>{
+      fetchPet(petId).then((data) => setPet(data));
+    })()
+  }, [petId]);
   const favorites = useSelector((state) => state.favorites.collection);
   const favoriteStatus = favorites.some((item) => item.id === numericPetId);
   async function ToggleFavorite() {
